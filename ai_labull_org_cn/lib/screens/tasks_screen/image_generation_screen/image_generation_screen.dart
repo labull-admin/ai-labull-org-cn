@@ -2,9 +2,10 @@ import 'package:ai.labull.org.cn/blocs/bloc_exports.dart';
 import 'package:ai.labull.org.cn/models/user/user.dart';
 import 'package:ai.labull.org.cn/router/routes_name.dart';
 import 'package:ai.labull.org.cn/screens/tasks_screen/image_generation_screen/widgets/single_image_generation_view.dart';
+import 'package:ai.labull.org.cn/utils/general_utils/url_lauch.dart';
 import 'package:ai.labull.org.cn/widgets/fake_progress_line.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter/foundation.dart';
 class ImageGenerationScreen extends StatefulWidget {
   const ImageGenerationScreen({super.key});
 
