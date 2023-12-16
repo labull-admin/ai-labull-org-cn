@@ -10,7 +10,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import './blocs/bloc_exports.dart';
 import 'package:ai.labull.org.cn/.env/env.dart'
-    show CURRENT_STAGE, DEV_STAGE, PROD_STAGE;
+    show CURRENT_STAGE, DEV_STAGE, PROD_STAGE, STAGE_STAGE;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,6 +20,9 @@ void main() async {
   Map<String, String> envVars = Map.from(dotenv.env);
   if (CURRENT_STAGE == PROD_STAGE) {
     await dotenv.load(fileName: "lib/.env/.env.prod", mergeWith: envVars);
+  
+  } else if (CURRENT_STAGE == STAGE_STAGE) {
+    await dotenv.load(fileName: "lib/.env/.env.stage", mergeWith: envVars);
   } else if (CURRENT_STAGE == DEV_STAGE) {
     await dotenv.load(fileName: "lib/.env/.env.dev", mergeWith: envVars);
   } else {

@@ -76,6 +76,7 @@ flutter:
     - lib/.env/.env.common
     - lib/.env/.env.dev
     - lib/.env/.env.prod
+    - lib/.env/.env.stage
     # cute bunny image
     - assets/images/cute_bunny.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
