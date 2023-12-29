@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:ai.labull.org.cn/router/routes_name.dart';
+import 'package:ai.labull.org.cn/routers/routes_name.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 

@@ -1,0 +1,4 @@
+{
+  "LABULL_AI_BACKEND_API_BASE_URL": "http://stage.backend.ai.labull.org.cn:443",
+  "ENVIRONMENT": "staging"
+}

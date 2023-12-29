@@ -1,14 +1,17 @@
 import 'dart:convert';
+import 'package:ai.labull.org.cn/exceptions/openai_interface_exception.dart';
 import 'package:ai.labull.org.cn/models/image_generation/image_generation.dart';
 import 'package:ai.labull.org.cn/models/image_variation/image_variation.dart';
 import 'package:ai.labull.org.cn/models/user/user.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart';
 import 'package:image_picker/image_picker.dart';
 
-String? labullAiBackendApiBaseUrl =
-    dotenv.maybeGet('LABULL_AI_BACKEND_API_BASE_URL', fallback: null);
+String labullAiBackendApiBaseUrl =
+    const bool.hasEnvironment('LABULL_AI_BACKEND_API_BASE_URL')
+        ? const String.fromEnvironment('LABULL_AI_BACKEND_API_BASE_URL')
+        : (throw ArgumentError('LABULL_AI_BACKEND_API_BASE_URL is not set.'));
+
 
 String imageGenerationApiUrl =
     "$labullAiBackendApiBaseUrl/openai_interface/image_generation/";
@@ -76,9 +79,9 @@ Future<ImageGeneration> openaiImageGenerate({
     } else {
       String errorMessage =
           'Failed to call openai image generation: ${response.statusCode} ${response.body}';
-      throw Exception(errorMessage);
+      throw OpenaiInterfaceException(errorMessage);
     }
-  } catch (e) {
+  } on http.ClientException catch (e) {
     throw ('openaiImageGenerate error: $e');
   }
 }
@@ -134,9 +137,9 @@ Future<ImageVariation> openaiImageVariate({
     } else {
       String errorMessage =
           'Failed to call openai image variation: ${response.statusCode} ${response.reasonPhrase}';
-      throw Exception(errorMessage);
+      throw OpenaiInterfaceException(errorMessage);
     }
-  } catch (e) {
+  } on http.ClientException catch (e) {
     throw ('openaiImageVariate error: $e');
   }
 }
@@ -188,9 +191,9 @@ Future<List<ImageGeneration>> getImageGenerationListForGallery({
     } else {
       String errorMessage =
           'Failed to call getImageGenerationListForGallery: ${response.statusCode} ${response.body}';
-      throw Exception(errorMessage);
+      throw OpenaiInterfaceException(errorMessage);
     }
-  } catch (e) {
+  } on http.ClientException catch (e) {
     throw ('getImageGenerationListForGallery error: $e');
   }
 }
@@ -238,9 +241,9 @@ Future<List<ImageVariation>> getImageVariationListForGallery({
     } else {
       String errorMessage =
           'Failed to call getImageVariationListForGallery: ${response.statusCode} ${response.body}';
-      throw Exception(errorMessage);
+      throw OpenaiInterfaceException(errorMessage);
     }
-  } catch (e) {
+  } on http.ClientException catch (e) {
     throw ('getImageVariationListForGallery error: $e');
   }
 }

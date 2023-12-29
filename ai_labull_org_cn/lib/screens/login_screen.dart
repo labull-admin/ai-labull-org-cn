@@ -10,9 +10,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  late String _name = '';
-  late String _password = '';
+  // final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  late String _name = "";
+  late String _password = "";
   bool _isLoginButtonEnabled = false;
   void _showAuthMessage(AuthState state) {
     if (state is AuthStateLoginFailure) {
@@ -37,15 +37,17 @@ class _LoginScreenState extends State<LoginScreen> {
           _showAuthMessage(state);
         },
         builder: (context, state) {
-          return Padding(
-            padding: const EdgeInsets.all(16.0),
+          return Container(
+            padding: const EdgeInsets.all(20),
             child: Form(
-              key: scaffoldKey,
+              // key: scaffoldKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
                   TextFormField(
                     decoration: const InputDecoration(labelText: '用户名'),
+                    autofocus: true,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your name';
@@ -61,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextFormField(
                     decoration: const InputDecoration(labelText: '密码'),
-                    obscureText: true,
+                    // obscureText: true,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your password';

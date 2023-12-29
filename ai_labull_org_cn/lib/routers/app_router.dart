@@ -1,4 +1,4 @@
-import 'package:ai.labull.org.cn/router/routes_name.dart';
+import 'package:ai.labull.org.cn/routers/routes_name.dart';
 import 'package:ai.labull.org.cn/screens/gallery_screen/gallery_screen.dart';
 import 'package:ai.labull.org.cn/screens/home_screen.dart';
 import 'package:ai.labull.org.cn/screens/tasks_screen/image_generation_screen/image_generation_screen.dart';

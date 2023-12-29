@@ -1,14 +1,19 @@
 import 'dart:convert';
+import 'package:ai.labull.org.cn/exceptions/authentication_exception.dart';
+import 'package:ai.labull.org.cn/exceptions/token_refresh_exception.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:sentry/sentry.dart';
 
-String? labullAiBackendApiBaseUrl =
-    dotenv.maybeGet('LABULL_AI_BACKEND_API_BASE_URL', fallback: null);
+
+
+String labullAiBackendApiBaseUrl =
+    const bool.hasEnvironment('LABULL_AI_BACKEND_API_BASE_URL')
+        ? const String.fromEnvironment('LABULL_AI_BACKEND_API_BASE_URL')
+        : (throw ArgumentError('LABULL_AI_BACKEND_API_BASE_URL is not set.'));
 
 String coreLoginApiUrl = "$labullAiBackendApiBaseUrl/core/login/";
 String coreTokenRefreshApiUrl =
     "$labullAiBackendApiBaseUrl/core/token/refresh/";
-
 
 Future<Map<String, String>> login(
     {required String username, required String password}) async {
@@ -33,13 +38,12 @@ Future<Map<String, String>> login(
       data.containsKey('detail')
           ? errorMessage += ': ${data['detail']}'
           : errorMessage;
-      throw Exception(errorMessage);
+      throw AuthenticationException(errorMessage);
     }
-  } catch (e) {
-    throw ('login error: $e');
+  } on http.ClientException catch (exception) {
+    throw ('login error: $exception');
   }
 }
-
 
 Future<String> tokenRefresh({required String refreshToken}) async {
   try {
@@ -58,9 +62,9 @@ Future<String> tokenRefresh({required String refreshToken}) async {
       data.containsKey('detail')
           ? errorMessage += ': ${data['detail']}'
           : errorMessage;
-      throw Exception(errorMessage);
+      throw TokenRefreshException(errorMessage);
     }
-  } catch (e) {
+  } on http.ClientException catch (e) {
     throw ('tokenRefresh error: $e');
   }
 }
