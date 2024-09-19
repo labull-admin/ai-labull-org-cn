@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  flutter:
+    image: stage-ai-labull-org-cn:latest
+    ports:
+      - "80:80"
+      - "443:80"
+      - "5520:80"
+    restart: always

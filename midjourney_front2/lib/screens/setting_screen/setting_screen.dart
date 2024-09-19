@@ -11,6 +11,14 @@ class SettingScreen extends StatefulWidget {
 class _SettingScreenState extends State<SettingScreen> {
   final _formKey = GlobalKey<FormState>();
   @override
+<<<<<<< Updated upstream:midjourney_front2/lib/screens/setting_screen/setting_screen.dart
+=======
+  void initState() {
+    super.initState();
+  }
+
+  @override
+>>>>>>> Stashed changes:ai_labull_org_cn/lib/screens/setting_screen/setting_screen.dart
   Widget build(BuildContext context) {
     return Scaffold(
       body: Form(

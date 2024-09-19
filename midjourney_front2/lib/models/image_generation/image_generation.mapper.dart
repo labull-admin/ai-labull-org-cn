@@ -49,7 +49,7 @@ class ImageGenerationMapper extends ClassMapperBase<ImageGeneration> {
       Field('createdAt', _$createdAt);
 
   @override
-  final Map<Symbol, Field<ImageGeneration, dynamic>> fields = const {
+  final MappableFields<ImageGeneration> fields = const {
     #pk: _f$pk,
     #user: _f$user,
     #model: _f$model,
@@ -249,8 +249,7 @@ class ImageGenerationResponseItemMapper
       Field('imageGeneration', _$imageGeneration);
 
   @override
-  final Map<Symbol, Field<ImageGenerationResponseItem, dynamic>> fields =
-      const {
+  final MappableFields<ImageGenerationResponseItem> fields = const {
     #pk: _f$pk,
     #revisedPrompt: _f$revisedPrompt,
     #revisedPromptInChinese: _f$revisedPromptInChinese,

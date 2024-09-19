@@ -22,29 +22,23 @@ class UserMapper extends ClassMapperBase<User> {
 
   static String _$name(User v) => v.name;
   static const Field<User, String> _f$name = Field('name', _$name);
-  static String _$password(User v) => v.password;
-  static const Field<User, String> _f$password = Field('password', _$password);
-  static String? _$jwtAccessToken(User v) => v.jwtAccessToken;
-  static const Field<User, String> _f$jwtAccessToken =
-      Field('jwtAccessToken', _$jwtAccessToken, opt: true);
-  static String? _$jwtRefreshToken(User v) => v.jwtRefreshToken;
-  static const Field<User, String> _f$jwtRefreshToken =
-      Field('jwtRefreshToken', _$jwtRefreshToken, opt: true);
+  static String _$email(User v) => v.email;
+  static const Field<User, String> _f$email = Field('email', _$email);
+  static bool _$isStaff(User v) => v.isStaff;
+  static const Field<User, bool> _f$isStaff = Field('isStaff', _$isStaff);
 
   @override
-  final Map<Symbol, Field<User, dynamic>> fields = const {
+  final MappableFields<User> fields = const {
     #name: _f$name,
-    #password: _f$password,
-    #jwtAccessToken: _f$jwtAccessToken,
-    #jwtRefreshToken: _f$jwtRefreshToken,
+    #email: _f$email,
+    #isStaff: _f$isStaff,
   };
 
   static User _instantiate(DecodingData data) {
     return User(
         name: data.dec(_f$name),
-        password: data.dec(_f$password),
-        jwtAccessToken: data.dec(_f$jwtAccessToken),
-        jwtRefreshToken: data.dec(_f$jwtRefreshToken));
+        email: data.dec(_f$email),
+        isStaff: data.dec(_f$isStaff));
   }
 
   @override
@@ -95,11 +89,7 @@ extension UserValueCopy<$R, $Out> on ObjectCopyWith<$R, User, $Out> {
 
 abstract class UserCopyWith<$R, $In extends User, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call(
-      {String? name,
-      String? password,
-      String? jwtAccessToken,
-      String? jwtRefreshToken});
+  $R call({String? name, String? email, bool? isStaff});
   UserCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -110,23 +100,17 @@ class _UserCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, User, $Out>
   @override
   late final ClassMapperBase<User> $mapper = UserMapper.ensureInitialized();
   @override
-  $R call(
-          {String? name,
-          String? password,
-          Object? jwtAccessToken = $none,
-          Object? jwtRefreshToken = $none}) =>
+  $R call({String? name, String? email, bool? isStaff}) =>
       $apply(FieldCopyWithData({
         if (name != null) #name: name,
-        if (password != null) #password: password,
-        if (jwtAccessToken != $none) #jwtAccessToken: jwtAccessToken,
-        if (jwtRefreshToken != $none) #jwtRefreshToken: jwtRefreshToken
+        if (email != null) #email: email,
+        if (isStaff != null) #isStaff: isStaff
       }));
   @override
   User $make(CopyWithData data) => User(
       name: data.get(#name, or: $value.name),
-      password: data.get(#password, or: $value.password),
-      jwtAccessToken: data.get(#jwtAccessToken, or: $value.jwtAccessToken),
-      jwtRefreshToken: data.get(#jwtRefreshToken, or: $value.jwtRefreshToken));
+      email: data.get(#email, or: $value.email),
+      isStaff: data.get(#isStaff, or: $value.isStaff));
 
   @override
   UserCopyWith<$R2, User, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>

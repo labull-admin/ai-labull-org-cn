@@ -5,14 +5,12 @@ part 'user.mapper.dart';
 @MappableClass()
 class User with UserMappable {
   final String name;
-  final String password;
-  final String? jwtAccessToken;
-  final String? jwtRefreshToken;
+  final String email;
+  final bool isStaff;
 
   const User({
     required this.name,
-    required this.password,
-    this.jwtAccessToken,
-    this.jwtRefreshToken,
+    required this.email,
+    required this.isStaff,
   });
 }

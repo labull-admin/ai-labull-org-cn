@@ -36,7 +36,12 @@ class ImageGenerationSettingsMapper
       Field('n', _$n, opt: true, def: 1);
 
   @override
+<<<<<<< Updated upstream:midjourney_front2/lib/models/image_generation_settings/image_generation_settings.mapper.dart
   final Map<Symbol, Field<ImageGenerationSettings, dynamic>> fields = const {
+=======
+  final MappableFields<ImageGenerationSettings> fields = const {
+    #ifRevisePrompt: _f$ifRevisePrompt,
+>>>>>>> Stashed changes:ai_labull_org_cn/lib/models/image_generation_settings/image_generation_settings.mapper.dart
     #model: _f$model,
     #size: _f$size,
     #quality: _f$quality,

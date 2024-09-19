@@ -45,9 +45,7 @@ final class AuthStateLoginInitial extends AuthState
     with AuthStateLoginInitialMappable {
   const AuthStateLoginInitial({
     String stateType = authStateLoginInitialType,
-    required User user,
   }) : super(
-          user: user,
           stateType: stateType,
         );
   static const fromMap = AuthStateLoginInitialMapper.fromMap;

@@ -79,9 +79,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ElevatedButton(
                     onPressed: _isLoginButtonEnabled
                         ? () {
-                            User user = User(name: _name, password: _password);
                             BlocProvider.of<AuthBloc>(context)
-                                .add(Login(user: user));
+                                .add(
+                                Login(username: _name, password: _password));
                           }
                         : null,
                     child: const Text('Login 登陆'),

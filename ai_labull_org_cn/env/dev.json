@@ -1,0 +1,4 @@
+{
+  "LABULL_AI_BACKEND_API_BASE_URL": "https://localhost:8001",
+  "ENVIRONMENT": "development"
+}

@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream:midjourney_front2/lib/blocs/auth/auth_bloc.dart
+=======
+import 'package:ai.labull.org.cn/utils/http_utils/dio_client.dart';
+>>>>>>> Stashed changes:ai_labull_org_cn/lib/blocs/auth/auth_bloc.dart
 import 'package:equatable/equatable.dart';
 import 'package:ai.labull.org.cn/blocs/bloc_exports.dart';
 import 'package:ai.labull.org.cn/utils/api_utils/backend_api_utils/core.dart';
@@ -11,6 +15,7 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
     on<Logout>(_onLogout);
   }
   void _onLogin(Login event, Emitter<AuthState> emit) async {
+<<<<<<< Updated upstream:midjourney_front2/lib/blocs/auth/auth_bloc.dart
     emit(AuthStateLoginInitial(user: event.user!));
     // print(AuthStateLoginInitial(user: event.user!).toJson());
     // print(AuthStateLoginInitial(user: event.user!).toMap());
@@ -30,6 +35,15 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
       } else {
         throw ("User name and password required");
       }
+=======
+    emit(const AuthStateLoginInitial());
+
+    try {
+      User user =
+          await login(username: event.username, password: event.password);
+      emit(const AuthStateLoginSuccess());
+      emit(AuthStateLogedIn(user: user));
+>>>>>>> Stashed changes:ai_labull_org_cn/lib/blocs/auth/auth_bloc.dart
     } catch (e) {
       emit(AuthStateLoginFailure(error: e.toString()));
       emit(const AuthStateNotLogedIn());
@@ -37,17 +51,32 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
   }
 
   void _onLogout(Logout event, Emitter<AuthState> emit) async {
+    final startState = state;
     try {
       emit(const AuthStateLogoutInitial());
       emit(const AuthStateLogoutLoading());
+      await logout();
       emit(const AuthStateLogoutSuccess());
       emit(const AuthStateNotLogedIn());
     } catch (e) {
       emit(AuthStateLogoutFailure(error: e.toString()));
-      emit(AuthStateLogedIn(user: event.user!));
+      emit(startState);
     }
   }
 
+<<<<<<< Updated upstream:midjourney_front2/lib/blocs/auth/auth_bloc.dart
+=======
+  void _onCheckToken(CheckToken event, Emitter<AuthState> emit) async {
+    try {
+      User user = await tokenRefresh();
+      emit(AuthStateLogedIn(user: user));
+    } catch (e) {
+      emit(AuthStateLoginFailure(error: e.toString()));
+      emit(const AuthStateNotLogedIn());
+    }
+  }
+
+>>>>>>> Stashed changes:ai_labull_org_cn/lib/blocs/auth/auth_bloc.dart
   @override
   AuthState fromJson(Map<String, dynamic> json) {
     switch (json['stateType']) {
